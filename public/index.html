@@ -1,15 +1,20 @@
 <head>
     <script defer src="bundle.js"></script>
-    <script defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBhGV2IOTX-VyJPGSP9cJl5VOsWq91ifF0&callback=initMap"></script>
-
+    <script defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBhGV2IOTX-VyJPGSP9cJl5VOsWq91ifF0&libraries=places&callback=initMap"></script>
     <style>
-        body { margin: 0; }
+        body {
+            margin: 10;
+        }
+
         #map {
-            width: 100vh;
-            height: 100vh;
+            width: 150vh;
+            height: 75vh;
         }
     </style>
 </head>
+
 <body>
+    <input id="place-input" type="text" placeholder="Enter a place" />
+    <button onclick="findPlace()">Search</button>
     <div id="map"></div>
 </body>
