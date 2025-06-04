@@ -31,6 +31,8 @@
 //   }
 // }
 
+const apiUrl = process.env.OLLAMA_API_URL;
+
 export async function POST(req) {
   try {
     const { message } = await req.json();
@@ -61,16 +63,16 @@ export async function POST(req) {
       });
     }
 
-    const response = await fetch("http://localhost:11434/v1/chat/completions", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        model: "llama3.2:1b",
-        messages: [{ role: "user", content: message }],
-      }),
-    });
+    const response = await fetch(`${apiUrl}/v1/chat/completions`, {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+  },
+  body: JSON.stringify({
+    model: "llama3.2:1b",
+    messages: [{ role: "user", content: message }],
+  }),
+});
 
     const data = await response.json();
 
