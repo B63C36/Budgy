@@ -1,8 +1,9 @@
+"use client";
 
 import { GoogleMap, LoadScript, HeatmapLayer } from '@react-google-maps/api';
 import { useMemo } from 'react';
-import "./styling/map.css";
-import Sidebar from './tools/sidebar';
+import "../styling/map.css";
+import Sidebar from '../tools/sidebar';
 
 const containerStyle = {
   width: '100%',

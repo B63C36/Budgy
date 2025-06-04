@@ -1,6 +1,8 @@
+"use client";
+
 import { useState } from "react";
-import "./styling/advisor.css";
-import Sidebar from "./tools/sidebar";
+import "../styling/advisor.css";
+import Sidebar from "../tools/sidebar";
 
 export default function Advisor() {
   const [userInput, setUserInput] = useState("");
@@ -11,20 +13,31 @@ export default function Advisor() {
     setLoading(true);
     setResponse("");
 
-    const res = await fetch("/api/chat", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ message: userInput }),
-    });
+    try {
+      const res = await fetch("/api/chat", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ message: userInput }),
+      });
 
-    const data = await res.json();
+      // Safely handle failed fetch
+      if (!res.ok) {
+        const err = await res.json();
+        setResponse("Error: " + err.error);
+        setLoading(false);
+        return;
+      }
 
-    if (data.reply) {
-      setResponse(data.reply);
-    } else if (data.error) {
-      setResponse("Error: " + data.error);
-    } else {
-      setResponse("No response received.");
+      const data = await res.json();
+
+      if (data.reply) {
+        setResponse(data.reply);
+      } else {
+        setResponse("No valid response received.");
+      }
+    } catch (error) {
+      console.error("Client Error:", error);
+      setResponse("An unexpected error occurred.");
     }
 
     setLoading(false);
