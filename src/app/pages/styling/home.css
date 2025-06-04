@@ -1,0 +1,29 @@
+.home-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f5f7fa;
+    font-family: sans-serif;
+    text-align: center;
+  }
+  
+  .home-title {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 2rem;
+  }
+  
+  .home-link {
+    display: block;
+    margin: 0.5rem 0;
+    color: #0070f3;
+    text-decoration: none;
+    font-size: 1.1rem;
+  }
+  
+  .home-link:hover {
+    text-decoration: underline;
+  }
+  
